@@ -58,6 +58,28 @@ const response = await register(values);
 
 The possible status code and data types are automatically included in the return type. All actions might encounter unexpected errors, which are caught automatically, and logged when in development mode. This is why any action could return a `Handlers.Types.Response<500, null>`
 
+## Response Object
+
+The object returned in a response contains the following properties:
+
+| Property      | Generic Type | Description                                                 |
+| ------------- | ------------ | ----------------------------------------------------------- |
+| `status`      | `number`     | The status code of the response.                            |
+| `ok`          | `boolean`    | Whether the response was successful (determined by status). |
+| `message`     | `string`     | A standard message/title (determined by status).            |
+| `description` | `string`     | A case-specific description of the response.                |
+| `data`        | `any`        | The data returned in the response.                          |
+
+The exact types of `status`, `ok`, `message`, and `data` will be included in the type of the response. For example, a response of type `Handlers.Types.Response<200, User>` will have the following types:
+
+| Property      | Exact Type |
+| ------------- | ---------- |
+| `status`      | `200`      |
+| `ok`          | `true`     |
+| `message`     | `"OK"`     |
+| `description` | `string`   |
+| `data`        | `User`     |
+
 ## Response Codes
 
 Response codes mostly follow those as defined by [this page](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes). In addition, _IIS_, _NGINX_, and _Cloudflare_ common response codes are included.
