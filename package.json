@@ -1,0 +1,40 @@
+{
+  "name": "next-handle",
+  "version": "1.2.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "/dist"
+  ],
+  "homepage": "https://github.com/twilkinson3421/next-handle#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twilkinson3421/next-handle.git"
+  },
+  "keywords": [
+    "next-server",
+    "server-actions",
+    "route-handlers",
+    "nextjs",
+    "next-app",
+    "nextjs-server-actions"
+  ],
+  "author": {
+    "name": "Thomas Wilkinson",
+    "url": "https://github.com/twilkinson3421"
+  },
+  "license": "MIT",
+  "description": "A small library which provides a uniform way to handle server actions in Next.js applications.",
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "chalk-konsole": "^1.0.6"
+  }
+}
