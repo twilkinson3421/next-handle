@@ -23,7 +23,7 @@ export async function register(payload: { values: RegisterFormValues }) {
 
     if (!valid) {
       return Handlers.Service.sendResponse(400, {
-        description: "Invalid payload",
+        detail: "Invalid payload",
         data: null,
       });
     }
@@ -34,7 +34,7 @@ export async function register(payload: { values: RegisterFormValues }) {
 
     if (userExists) {
       return Handlers.Service.sendResponse(409, {
-        description: "User already exists",
+        detail: "User already exists",
         data: null,
       });
     }
@@ -42,7 +42,7 @@ export async function register(payload: { values: RegisterFormValues }) {
     // ... create user
 
     return Handlers.Service.sendResponse(201, {
-      description: `User created with details: ${details}`,
+      detail: `User created with email: ${userEmail}`,
       data: null,
     });
   });
@@ -62,23 +62,23 @@ The possible status code and data types are automatically included in the return
 
 The object returned in a response contains the following properties:
 
-| Property      | Generic Type | Description                                                 |
-| ------------- | ------------ | ----------------------------------------------------------- |
-| `status`      | `number`     | The status code of the response.                            |
-| `ok`          | `boolean`    | Whether the response was successful (determined by status). |
-| `message`     | `string`     | A standard message/title (determined by status).            |
-| `description` | `string`     | A case-specific description of the response.                |
-| `data`        | `any`        | The data returned in the response.                          |
+| Property | Generic Type | Description                                                             |
+| -------- | ------------ | ----------------------------------------------------------------------- |
+| `status` | `number`     | The status code of the response.                                        |
+| `ok`     | `boolean`    | Whether the response was successful (determined by status).             |
+| `title`  | `string`     | A standard title (determined by status).                                |
+| `detail` | `string`     | A human-readable explanation specific to this occurrence of the problem |
+| `data`   | `any`        | The data returned in the response.                                      |
 
-The exact types of `status`, `ok`, `message`, and `data` will be included in the type of the response. For example, a response of type `Handlers.Types.Response<200, User>` will have the following types:
+The exact types of `status`, `ok`, `title`, and `data` will be included in the type of the response. For example, a response of type `Handlers.Types.Response<200, User>` will have the following types:
 
-| Property      | Exact Type |
-| ------------- | ---------- |
-| `status`      | `200`      |
-| `ok`          | `true`     |
-| `message`     | `"OK"`     |
-| `description` | `string`   |
-| `data`        | `User`     |
+| Property | Exact Type |
+| -------- | ---------- |
+| `status` | `200`      |
+| `ok`     | `true`     |
+| `title`  | `"OK"`     |
+| `detail` | `string`   |
+| `data`   | `User`     |
 
 ## Response Codes
 

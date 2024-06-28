@@ -6,347 +6,347 @@ declare namespace Handlers {
         type Response<Status extends AcceptableStatus, DataType extends AcceptableDataType> = {
             status: Status;
             ok: StatusIsOk<Status>;
-            message: (typeof Handlers.Config.responses)[Status]["message"];
-            description?: string;
+            title: (typeof Handlers.Config.responses)[Status]["title"];
+            detail?: string;
             data: DataType;
         };
     }
     namespace Config {
         const responses: {
             readonly 100: {
-                readonly message: "Continue";
+                readonly title: "Continue";
                 readonly ok: true;
             };
             readonly 101: {
-                readonly message: "Switching Protocols";
+                readonly title: "Switching Protocols";
                 readonly ok: true;
             };
             readonly 102: {
-                readonly message: "Processing";
+                readonly title: "Processing";
                 readonly ok: true;
             };
             readonly 103: {
-                readonly message: "Early Hints";
+                readonly title: "Early Hints";
                 readonly ok: true;
             };
             readonly 200: {
-                readonly message: "OK";
+                readonly title: "OK";
                 readonly ok: true;
             };
             readonly 201: {
-                readonly message: "Created";
+                readonly title: "Created";
                 readonly ok: true;
             };
             readonly 202: {
-                readonly message: "Accepted";
+                readonly title: "Accepted";
                 readonly ok: true;
             };
             readonly 203: {
-                readonly message: "Non-Authoritative Information";
+                readonly title: "Non-Authoritative Information";
                 readonly ok: true;
             };
             readonly 204: {
-                readonly message: "No Content";
+                readonly title: "No Content";
                 readonly ok: true;
             };
             readonly 205: {
-                readonly message: "Reset Content";
+                readonly title: "Reset Content";
                 readonly ok: true;
             };
             readonly 206: {
-                readonly message: "Partial Content";
+                readonly title: "Partial Content";
                 readonly ok: true;
             };
             readonly 207: {
-                readonly message: "Multi-Status";
+                readonly title: "Multi-Status";
                 readonly ok: true;
             };
             readonly 208: {
-                readonly message: "Already Reported";
+                readonly title: "Already Reported";
                 readonly ok: true;
             };
             readonly 226: {
-                readonly message: "IM Used";
+                readonly title: "IM Used";
                 readonly ok: true;
             };
             readonly 300: {
-                readonly message: "Multiple Choices";
+                readonly title: "Multiple Choices";
                 readonly ok: true;
             };
             readonly 301: {
-                readonly message: "Moved Permanently";
+                readonly title: "Moved Permanently";
                 readonly ok: true;
             };
             readonly 302: {
-                readonly message: "Found";
+                readonly title: "Found";
                 readonly ok: true;
             };
             readonly 303: {
-                readonly message: "See Other";
+                readonly title: "See Other";
                 readonly ok: true;
             };
             readonly 304: {
-                readonly message: "Not Modified";
+                readonly title: "Not Modified";
                 readonly ok: true;
             };
             readonly 305: {
-                readonly message: "Use Proxy";
+                readonly title: "Use Proxy";
                 readonly ok: true;
             };
             readonly 306: {
-                readonly message: "Switch Proxy";
+                readonly title: "Switch Proxy";
                 readonly ok: true;
             };
             readonly 307: {
-                readonly message: "Temporary Redirect";
+                readonly title: "Temporary Redirect";
                 readonly ok: true;
             };
             readonly 308: {
-                readonly message: "Permanent Redirect";
+                readonly title: "Permanent Redirect";
                 readonly ok: true;
             };
             readonly 400: {
-                readonly message: "Bad Request";
+                readonly title: "Bad Request";
                 readonly ok: false;
             };
             readonly 401: {
-                readonly message: "Unauthorized";
+                readonly title: "Unauthorized";
                 readonly ok: false;
             };
             readonly 402: {
-                readonly message: "Payment Required";
+                readonly title: "Payment Required";
                 readonly ok: false;
             };
             readonly 403: {
-                readonly message: "Forbidden";
+                readonly title: "Forbidden";
                 readonly ok: false;
             };
             readonly 404: {
-                readonly message: "Not Found";
+                readonly title: "Not Found";
                 readonly ok: false;
             };
             readonly 405: {
-                readonly message: "Method Not Allowed";
+                readonly title: "Method Not Allowed";
                 readonly ok: false;
             };
             readonly 406: {
-                readonly message: "Not Acceptable";
+                readonly title: "Not Acceptable";
                 readonly ok: false;
             };
             readonly 407: {
-                readonly message: "Proxy Authentication Required";
+                readonly title: "Proxy Authentication Required";
                 readonly ok: false;
             };
             readonly 408: {
-                readonly message: "Request Timeout";
+                readonly title: "Request Timeout";
                 readonly ok: false;
             };
             readonly 409: {
-                readonly message: "Conflict";
+                readonly title: "Conflict";
                 readonly ok: false;
             };
             readonly 410: {
-                readonly message: "Gone";
+                readonly title: "Gone";
                 readonly ok: false;
             };
             readonly 411: {
-                readonly message: "Length Required";
+                readonly title: "Length Required";
                 readonly ok: false;
             };
             readonly 412: {
-                readonly message: "Precondition Failed";
+                readonly title: "Precondition Failed";
                 readonly ok: false;
             };
             readonly 413: {
-                readonly message: "Payload Too Large";
+                readonly title: "Payload Too Large";
                 readonly ok: false;
             };
             readonly 414: {
-                readonly message: "URI Too Long";
+                readonly title: "URI Too Long";
                 readonly ok: false;
             };
             readonly 415: {
-                readonly message: "Unsupported Media Type";
+                readonly title: "Unsupported Media Type";
                 readonly ok: false;
             };
             readonly 416: {
-                readonly message: "Range Not Satisfiable";
+                readonly title: "Range Not Satisfiable";
                 readonly ok: false;
             };
             readonly 417: {
-                readonly message: "Expectation Failed";
+                readonly title: "Expectation Failed";
                 readonly ok: false;
             };
             readonly 418: {
-                readonly message: "I'm a teapot";
+                readonly title: "I'm a teapot";
                 readonly ok: false;
             };
             readonly 421: {
-                readonly message: "Misdirected Request";
+                readonly title: "Misdirected Request";
                 readonly ok: false;
             };
             readonly 422: {
-                readonly message: "Unprocessable Entity";
+                readonly title: "Unprocessable Entity";
                 readonly ok: false;
             };
             readonly 423: {
-                readonly message: "Locked";
+                readonly title: "Locked";
                 readonly ok: false;
             };
             readonly 424: {
-                readonly message: "Failed Dependency";
+                readonly title: "Failed Dependency";
                 readonly ok: false;
             };
             readonly 425: {
-                readonly message: "Too Early";
+                readonly title: "Too Early";
                 readonly ok: false;
             };
             readonly 426: {
-                readonly message: "Upgrade Required";
+                readonly title: "Upgrade Required";
                 readonly ok: false;
             };
             readonly 428: {
-                readonly message: "Precondition Required";
+                readonly title: "Precondition Required";
                 readonly ok: false;
             };
             readonly 429: {
-                readonly message: "Too Many Requests";
+                readonly title: "Too Many Requests";
                 readonly ok: false;
             };
             readonly 431: {
-                readonly message: "Request Header Fields Too Large";
+                readonly title: "Request Header Fields Too Large";
                 readonly ok: false;
             };
             readonly 451: {
-                readonly message: "Unavailable For Legal Reasons";
+                readonly title: "Unavailable For Legal Reasons";
                 readonly ok: false;
             };
             readonly 500: {
-                readonly message: "Internal Server Error";
+                readonly title: "Internal Server Error";
                 readonly ok: false;
             };
             readonly 501: {
-                readonly message: "Not Implemented";
+                readonly title: "Not Implemented";
                 readonly ok: false;
             };
             readonly 502: {
-                readonly message: "Bad Gateway";
+                readonly title: "Bad Gateway";
                 readonly ok: false;
             };
             readonly 503: {
-                readonly message: "Service Unavailable";
+                readonly title: "Service Unavailable";
                 readonly ok: false;
             };
             readonly 504: {
-                readonly message: "Gateway Timeout";
+                readonly title: "Gateway Timeout";
                 readonly ok: false;
             };
             readonly 505: {
-                readonly message: "HTTP Version Not Supported";
+                readonly title: "HTTP Version Not Supported";
                 readonly ok: false;
             };
             readonly 506: {
-                readonly message: "Variant Also Negotiates";
+                readonly title: "Variant Also Negotiates";
                 readonly ok: false;
             };
             readonly 507: {
-                readonly message: "Insufficient Storage";
+                readonly title: "Insufficient Storage";
                 readonly ok: false;
             };
             readonly 508: {
-                readonly message: "Loop Detected";
+                readonly title: "Loop Detected";
                 readonly ok: false;
             };
             readonly 510: {
-                readonly message: "Not Extended";
+                readonly title: "Not Extended";
                 readonly ok: false;
             };
             readonly 511: {
-                readonly message: "Network Authentication Required";
+                readonly title: "Network Authentication Required";
                 readonly ok: false;
             };
             readonly 440: {
-                readonly message: "Login Timeout";
+                readonly title: "Login Timeout";
                 readonly ok: false;
             };
             readonly 449: {
-                readonly message: "Retry With";
+                readonly title: "Retry With";
                 readonly ok: false;
             };
             readonly 444: {
-                readonly message: "No Response";
+                readonly title: "No Response";
                 readonly ok: false;
             };
             readonly 494: {
-                readonly message: "Request header too large";
+                readonly title: "Request header too large";
                 readonly ok: false;
             };
             readonly 495: {
-                readonly message: "SSL Certificate Error";
+                readonly title: "SSL Certificate Error";
                 readonly ok: false;
             };
             readonly 496: {
-                readonly message: "SSL Certificate Required";
+                readonly title: "SSL Certificate Required";
                 readonly ok: false;
             };
             readonly 497: {
-                readonly message: "HTTP Request Sent to HTTPS Port";
+                readonly title: "HTTP Request Sent to HTTPS Port";
                 readonly ok: false;
             };
             readonly 499: {
-                readonly message: "Client Closed Request";
+                readonly title: "Client Closed Request";
                 readonly ok: false;
             };
             readonly 520: {
-                readonly message: "Web Server Returned an Unknown Error";
+                readonly title: "Web Server Returned an Unknown Error";
                 readonly ok: false;
             };
             readonly 521: {
-                readonly message: "Web Server is Down";
+                readonly title: "Web Server is Down";
                 readonly ok: false;
             };
             readonly 522: {
-                readonly message: "Connection Timed Out";
+                readonly title: "Connection Timed Out";
                 readonly ok: false;
             };
             readonly 523: {
-                readonly message: "Origin Is Unreachable";
+                readonly title: "Origin Is Unreachable";
                 readonly ok: false;
             };
             readonly 524: {
-                readonly message: "A Timeout Occurred";
+                readonly title: "A Timeout Occurred";
                 readonly ok: false;
             };
             readonly 525: {
-                readonly message: "SSL Handshake Failed";
+                readonly title: "SSL Handshake Failed";
                 readonly ok: false;
             };
             readonly 526: {
-                readonly message: "Invalid SSL Certificate";
+                readonly title: "Invalid SSL Certificate";
                 readonly ok: false;
             };
             readonly 631: {
-                readonly message: "Non-Standard Information";
+                readonly title: "Non-Standard Information";
                 readonly ok: true;
             };
             readonly 632: {
-                readonly message: "Non-Standard Success";
+                readonly title: "Non-Standard Success";
                 readonly ok: true;
             };
             readonly 633: {
-                readonly message: "Non-Standard Redirect";
+                readonly title: "Non-Standard Redirect";
                 readonly ok: true;
             };
             readonly 634: {
-                readonly message: "Non-Standard Client Error";
+                readonly title: "Non-Standard Client Error";
                 readonly ok: false;
             };
             readonly 635: {
-                readonly message: "Non-Standard Server Error";
+                readonly title: "Non-Standard Server Error";
                 readonly ok: false;
             };
             readonly 600: {
-                readonly message: "Not a Response";
+                readonly title: "Not a Response";
                 readonly ok: false;
             };
         };
@@ -360,7 +360,7 @@ declare namespace Handlers {
         function action<Status extends Handlers.Types.AcceptableStatus, DataType extends Handlers.Types.AcceptableDataType>(action: () => Promise<Handlers.Types.Response<Status, DataType>>): Promise<Handlers.Types.Response<Status, DataType> | Handlers.Types.Response<500, null>>;
         function sendResponse<Status extends Handlers.Types.Response<Handlers.Types.AcceptableStatus, Handlers.Types.AcceptableDataType>["status"], DataType extends Handlers.Types.AcceptableDataType>(status: Status, payload: {
             data: DataType;
-            description?: Handlers.Types.Response<Status, DataType>["description"];
+            detail?: Handlers.Types.Response<Status, DataType>["detail"];
         }): Handlers.Types.Response<Status, DataType>;
     }
 }
