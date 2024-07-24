@@ -53,7 +53,7 @@ Now you can use `register` as a server action, and receive an automatically full
 
 ```ts
 const response = await register(values);
-//    ^? typeof response = Handlers.Basic.Response<500, null> | Handlers.Basic.Response<400 | 409 | 201, null>
+//    ^? typeof response = Handlers.Basic.Response<500, null> | Handlers.Basic.Response<400, null> | Handlers.Basic.Response<409, null> | Handlers.Basic.Response<201, null>
 ```
 
 The possible status code and data types are automatically included in the return type. All actions might encounter unexpected errors, which are caught automatically, and logged when in development mode. This is why any action could return a `Handlers.Types.Response<500, null>`

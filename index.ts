@@ -149,14 +149,13 @@ namespace Handlers {
 
   export namespace Service {
     export async function action<
-      Status extends Handlers.Types.AcceptableStatus,
-      DataType extends Handlers.Types.AcceptableDataType
-    >(
-      action: () => Promise<Handlers.Types.Response<Status, DataType>>
-    ): Promise<
-      | Handlers.Types.Response<Status, DataType>
-      | Handlers.Types.Response<500, null>
-    > {
+      ActionReturn extends Promise<
+        Handlers.Types.Response<
+          Handlers.Types.AcceptableStatus,
+          Handlers.Types.AcceptableDataType
+        >
+      >
+    >(action: () => ActionReturn) {
       try {
         return await action();
       } catch (error) {
