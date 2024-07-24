@@ -1,6 +1,6 @@
 {
   "name": "next-handle",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -34,6 +34,6 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "chalk-konsole": "^1.0.8"
+    "chalk-konsole": "^1.0.9"
   }
 }
