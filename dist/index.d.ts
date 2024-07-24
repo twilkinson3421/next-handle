@@ -357,7 +357,7 @@ declare namespace Handlers {
         }
     }
     namespace Service {
-        function action<Status extends Handlers.Types.AcceptableStatus, DataType extends Handlers.Types.AcceptableDataType>(action: () => Promise<Handlers.Types.Response<Status, DataType>>): Promise<Handlers.Types.Response<Status, DataType> | Handlers.Types.Response<500, null>>;
+        function action<ActionReturn extends Promise<Handlers.Types.Response<Handlers.Types.AcceptableStatus, Handlers.Types.AcceptableDataType>>>(action: () => ActionReturn): Promise<Types.Response<500, null> | ActionReturn>;
         function sendResponse<Status extends Handlers.Types.Response<Handlers.Types.AcceptableStatus, Handlers.Types.AcceptableDataType>["status"], DataType extends Handlers.Types.AcceptableDataType>(status: Status, payload: {
             data: DataType;
             detail?: Handlers.Types.Response<Status, DataType>["detail"];
