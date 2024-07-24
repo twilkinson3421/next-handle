@@ -1,5 +1,9 @@
-import chalk from "chalk";
 import konsole from "chalk-konsole";
+const LOG_AUTO_500 = process.env.X_NEXT_HANDLE_LOG_AUTO_500 === "true";
+const LOG_HANDLED_500 = process.env.X_NEXT_HANDLE_LOG_HANDLED_500 === "true";
+const LOG_HANDLED_200 = process.env.X_NEXT_HANDLE_LOG_HANDLED_200 === "true";
+const LOG_HANDLED_NOT_OK = process.env.X_NEXT_HANDLE_LOG_HANDLED_NOT_OK === "true";
+const LOG_HANDLED_OK = process.env.X_NEXT_HANDLE_LOG_HANDLED_OK === "true";
 var Handlers;
 (function (Handlers) {
     let Config;
@@ -112,11 +116,27 @@ var Handlers;
     (function (Service) {
         async function action(action) {
             try {
-                return await action();
+                const response = await action();
+                if (response.detail) {
+                    switch (response.ok) {
+                        case true: {
+                            if (LOG_HANDLED_OK ||
+                                (LOG_HANDLED_200 && response.status === 200))
+                                konsole.success(`${response.status} ${response.title}`, response.detail);
+                            break;
+                        }
+                        case false: {
+                            if (LOG_HANDLED_NOT_OK ||
+                                (LOG_HANDLED_500 && response.status === 500))
+                                konsole.err(`${response.status} ${response.title}`, response.detail);
+                        }
+                    }
+                }
+                return response;
             }
             catch (error) {
-                if (process.env.NODE_ENV === "development")
-                    konsole.err(`Failed to execute server action`, `${chalk.grey(chalk.italic(error))}`);
+                if (LOG_AUTO_500)
+                    konsole.err(`Failed to execute server action`, `${error}`);
                 return Handlers.Methods.Basic.serverError();
             }
         }

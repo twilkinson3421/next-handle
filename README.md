@@ -56,7 +56,19 @@ const response = await register(values);
 //    ^? typeof response = Handlers.Basic.Response<500, null> | Handlers.Basic.Response<400, null> | Handlers.Basic.Response<409, null> | Handlers.Basic.Response<201, null>
 ```
 
-The possible status code and data types are automatically included in the return type. All actions might encounter unexpected errors, which are caught automatically, and logged when in development mode. This is why any action could return a `Handlers.Types.Response<500, null>`
+The possible status code and data types are automatically included in the return type. All actions might encounter unexpected errors, which are caught automatically. This is why any action could return a `Handlers.Types.Response<500, null>`.
+
+## Logging
+
+You can control which responses are logged to the console, by setting the following environment variables:
+
+| Variable Name                      | Description                                                                                                                            |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `X_NEXT_HANDLE_LOG_AUTO_500`       | Whether to log when a server action encounters an unexpected error, and fails                                                          |
+| `X_NEXT_HANDLE_LOG_HANDLED_OK`     | Whether to log when a server action returns a response with `ok` set to `true`                                                         |
+| `X_NEXT_HANDLE_LOG_HANDLED_200`    | Whether to log when a server action returns a response with a `status` of `200`, even if `X_NEXT_HANDLE_LOG_HANDLED_OK` is `false`     |
+| `X_NEXT_HANDLE_LOG_HANDLED_NOT_OK` | Whether to log when a server action returns a response with `ok` set to `false`                                                        |
+| `X_NEXT_HANDLE_LOG_HANDLED_500`    | Whether to log when a server action returns a response with a `status` of `500`, even if `X_NEXT_HANDLE_LOG_HANDLED_NOT_OK` is `false` |
 
 ## Response Object
 
