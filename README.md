@@ -62,13 +62,11 @@ The possible status code and data types are automatically included in the return
 
 You can control which responses are logged to the console, by setting the following environment variables:
 
-| Variable Name                      | Description                                                                                                                            |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `X_NEXT_HANDLE_LOG_AUTO_500`       | Whether to log when a server action encounters an unexpected error, and fails                                                          |
-| `X_NEXT_HANDLE_LOG_HANDLED_OK`     | Whether to log when a server action returns a response with `ok` set to `true`                                                         |
-| `X_NEXT_HANDLE_LOG_HANDLED_200`    | Whether to log when a server action returns a response with a `status` of `200`, even if `X_NEXT_HANDLE_LOG_HANDLED_OK` is `false`     |
-| `X_NEXT_HANDLE_LOG_HANDLED_NOT_OK` | Whether to log when a server action returns a response with `ok` set to `false`                                                        |
-| `X_NEXT_HANDLE_LOG_HANDLED_500`    | Whether to log when a server action returns a response with a `status` of `500`, even if `X_NEXT_HANDLE_LOG_HANDLED_NOT_OK` is `false` |
+| Variable Name                | Description                                                                                                                                                                                                                                   |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NEXT_HANDLE_LOG_AUTO_ERROR` | Whether to log when a server action encounters an unexpected error, and fails                                                                                                                                                                 |
+| `NEXT_HANDLE_LOG_STATUS`     | A comma-separated list of status codes to log. If set to `*`, all status codes will be logged. Add `ERR` or `OK` to log all error responses, and all OK responses respectively                                                                |
+| `NEXT_HANDLE_EXCLUDE_STATUS` | A comma-separated list of status codes to exclude from logging. If set to `*`, all status codes will be excluded. Add `ERR` or `OK` to exclude all error responses, and all OK responses respectively (excludes take precedence over logging) |
 
 ## Response Object
 
