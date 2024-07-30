@@ -1,9 +1,12 @@
 import konsole from "chalk-konsole";
-const LOG_AUTO_500 = process.env.X_NEXT_HANDLE_LOG_AUTO_500 === "true";
-const LOG_HANDLED_500 = process.env.X_NEXT_HANDLE_LOG_HANDLED_500 === "true";
-const LOG_HANDLED_200 = process.env.X_NEXT_HANDLE_LOG_HANDLED_200 === "true";
-const LOG_HANDLED_NOT_OK = process.env.X_NEXT_HANDLE_LOG_HANDLED_NOT_OK === "true";
-const LOG_HANDLED_OK = process.env.X_NEXT_HANDLE_LOG_HANDLED_OK === "true";
+const LOG_AUTO_ERROR = process.env.NEXT_HANDLE_LOG_AUTO_ERROR === "true";
+const LOG_ALL = process.env.NEXT_HANDLE_LOG_STATUS === "*";
+const LOG_STATUS_ARR = process.env.NEXT_HANDLE_LOG_STATUS?.split(",");
+const EXCLUDE_STATUS_ARR = process.env.NEXT_HANDLE_EXCLUDE_STATUS?.split(",");
+const LOG_ALL_OK = LOG_STATUS_ARR?.includes("OK");
+const LOG_ALL_ERR = LOG_STATUS_ARR?.includes("ERR");
+const EXCLUDE_ALL_OK = EXCLUDE_STATUS_ARR?.includes("OK");
+const EXCLUDE_ALL_ERR = EXCLUDE_STATUS_ARR?.includes("ERR");
 var Handlers;
 (function (Handlers) {
     let Config;
@@ -118,24 +121,23 @@ var Handlers;
             try {
                 const response = await action();
                 if (response.detail) {
-                    switch (response.ok) {
-                        case true: {
-                            if (LOG_HANDLED_OK ||
-                                (LOG_HANDLED_200 && response.status === 200))
-                                konsole.success(`${response.status} ${response.title}`, response.detail);
-                            break;
-                        }
-                        case false: {
-                            if (LOG_HANDLED_NOT_OK ||
-                                (LOG_HANDLED_500 && response.status === 500))
-                                konsole.err(`${response.status} ${response.title}`, response.detail);
-                        }
-                    }
+                    const method = response.ok ? "success" : "err";
+                    const THIS_IS_LOGGED = LOG_STATUS_ARR?.includes(response.status.toString());
+                    const CATCH_ALL_LOG = response.ok ? LOG_ALL_OK : LOG_ALL_ERR;
+                    const THIS_IS_EXCLUDED = EXCLUDE_STATUS_ARR?.includes(response.status.toString());
+                    const CATCH_ALL_EXCLUDE = response.ok
+                        ? EXCLUDE_ALL_OK
+                        : EXCLUDE_ALL_ERR;
+                    const LOG_THIS = LOG_ALL || THIS_IS_LOGGED || CATCH_ALL_LOG;
+                    const EXCLUDE_THIS = THIS_IS_EXCLUDED || CATCH_ALL_EXCLUDE;
+                    const SHOULD_LOG = LOG_THIS && !EXCLUDE_THIS;
+                    if (SHOULD_LOG)
+                        konsole[method](`${response.status} ${response.title}`, response.detail);
                 }
                 return response;
             }
             catch (error) {
-                if (LOG_AUTO_500)
+                if (LOG_AUTO_ERROR)
                     konsole.err(`Failed to execute server action`, `${error}`);
                 return Handlers.Methods.Basic.serverError();
             }
